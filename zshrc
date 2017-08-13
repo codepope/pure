@@ -22,6 +22,8 @@ if [[ -s "$HOME/.zshrc-local" ]]; then
   source "$HOME/.zshrc-local"
 fi
 
+# My own CG command (CD for Go Packages)
+
 function cg() {
 
 if (( $#==0 )) then
@@ -52,4 +54,13 @@ else
   return 0
 fi
 }
+
+# Smarter cursor based search
+
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search # Up
+bindkey "^[[B" down-line-or-beginning-search # Down
 
