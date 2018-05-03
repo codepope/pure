@@ -21,6 +21,16 @@ fi
 if [[ -s "$HOME/.zshrc-local" ]]; then
   source "$HOME/.zshrc-local"
 fi
+# My bxmanage command
+
+function bxmanage() {
+if (( $#==0 )) then
+  echo "Usage: bxmanage bimic-service-name"
+  return 1
+fi
+
+bx service show $1 | grep Dashboard: | sed -e 's/Dashboard: //' | xargs open
+}
 
 # My own CG command (CD for Go Packages)
 
